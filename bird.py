@@ -9,7 +9,7 @@ RUN_SPEED_KMPH = 100.0
 RUN_SPEED_MPM = RUN_SPEED_KMPH * 100.0 / 6.0
 RUN_SPEED_MPS = RUN_SPEED_MPM / 60.0
 RUN_SPEED_PPS = RUN_SPEED_MPS * PIXEL_PER_METER
-TIME_PER_ACTION = 2
+TIME_PER_ACTION = 0.5
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
 FRAMES_PER_ACTION = 8
 
@@ -31,7 +31,7 @@ class Fly:
     def do(bird):
         bird.frame = (
             bird.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time
-        ) % 8
+        ) % 5
         bird.x += bird.dir * RUN_SPEED_PPS * game_framework.frame_time
 
         if bird.frame == 4:
@@ -47,11 +47,23 @@ class Fly:
             bird.frame = 0
             bird.action = 2
 
+        if bird.x > 1575:
+            bird.face_dir = -1
+            bird.dir = -1
+
+        elif bird.x < 25:
+            bird.face_dir = 1
+            bird.dir = 1
+
     @staticmethod
     def draw(bird):
-        bird.image.clip_draw(
-            int(bird.frame) * 100, bird.action * 168, 50, 50, bird.x, bird.y
-        )
+        if bird.dir > 0:
+            bird.image.clip_draw(
+                int(bird.frame) * 183, bird.action * 168, 180, 168, bird.x, bird.y, 50, 50
+            )
+        
+        else:
+            pass
         print(f"b d: {bird.frame}")
 
 
