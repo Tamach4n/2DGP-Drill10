@@ -14,6 +14,7 @@ ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
 FRAMES_PER_ACTION = 8
 
 
+#   100km/h, 50x50
 class Fly:
     @staticmethod
     def enter(bird, e):

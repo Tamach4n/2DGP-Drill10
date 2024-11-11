@@ -8,6 +8,7 @@ from bird import Bird
 
 # boy = None
 
+
 def handle_events():
     events = get_events()
     for event in events:
@@ -17,6 +18,7 @@ def handle_events():
             game_framework.quit()
         else:
             boy.handle_event(event)
+
 
 def init():
     global grass
@@ -29,8 +31,8 @@ def init():
     boy = Boy()
     game_world.add_object(boy, 1)
 
-    bird=Bird()
-    game_world.add_object(bird,1)
+    bird = Bird()
+    game_world.add_object(bird, 1)
 
 
 def finish():
@@ -40,16 +42,18 @@ def finish():
 
 def update():
     game_world.update()
-    #delay(0.1)
+    # delay(0.1)
+
 
 def draw():
     clear_canvas()
     game_world.render()
     update_canvas()
 
+
 def pause():
     pass
 
+
 def resume():
     pass
-
