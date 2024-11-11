@@ -23,7 +23,7 @@ def handle_events():
 def init():
     global grass
     global boy
-    global bird
+    global birds
 
     grass = Grass()
     game_world.add_object(grass, 0)
@@ -31,8 +31,8 @@ def init():
     boy = Boy()
     game_world.add_object(boy, 1)
 
-    bird = Bird()
-    game_world.add_object(bird, 1)
+    birds = [Bird() for i in range(10)]
+    game_world.add_objects(birds, 1)
 
 
 def finish():

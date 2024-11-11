@@ -3,18 +3,19 @@ from state_machine import *
 from ball import Ball
 import game_world
 import game_framework
+from random import randint
 
 PIXEL_PER_METER = 10.0 / 0.3
 RUN_SPEED_KMPH = 100.0
 RUN_SPEED_MPM = RUN_SPEED_KMPH * 100.0 / 6.0
 RUN_SPEED_MPS = RUN_SPEED_MPM / 60.0
 RUN_SPEED_PPS = RUN_SPEED_MPS * PIXEL_PER_METER
-TIME_PER_ACTION = 0.5
+TIME_PER_ACTION = 0.2
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
-FRAMES_PER_ACTION = 8
+FRAMES_PER_ACTION = 15
 
 
-#   100km/h, 50x50
+#   100km/h, 50x50, 날개짓 초 당 5회
 class Fly:
     @staticmethod
     def enter(bird, e):
@@ -59,7 +60,14 @@ class Fly:
     def draw(bird):
         if bird.dir > 0:
             bird.image.clip_draw(
-                int(bird.frame) * 183, bird.action * 168, 180, 168, bird.x, bird.y, 50, 50
+                int(bird.frame) * 183,
+                bird.action * 168,
+                180,
+                168,
+                bird.x,
+                bird.y,
+                50,
+                50,
             )
 
         else:
@@ -80,7 +88,7 @@ class Fly:
 
 class Bird:
     def __init__(self):
-        self.x, self.y = 200, 500
+        self.x, self.y = randint(25, 250), 500
         self.face_dir = 1
         self.image = load_image("bird_animation.png")
         self.state_machine = StateMachine(self)
