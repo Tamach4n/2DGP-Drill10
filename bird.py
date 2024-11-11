@@ -61,9 +61,20 @@ class Fly:
             bird.image.clip_draw(
                 int(bird.frame) * 183, bird.action * 168, 180, 168, bird.x, bird.y, 50, 50
             )
-        
+
         else:
-            pass
+            bird.image.clip_composite_draw(
+                int(bird.frame) * 183,
+                bird.action * 168,
+                180,
+                168,
+                0,
+                "h",
+                bird.x,
+                bird.y,
+                50,
+                50,
+            )
         print(f"b d: {bird.frame}")
 
 
